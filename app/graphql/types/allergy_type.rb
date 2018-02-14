@@ -7,4 +7,5 @@ Types::AllergyType = GraphQL::ObjectType.define do
   field :severity, !types.String
   field :treatment, !types.String
   field :comment, !types.String
+  field :ownedBy, -> { Types::UserType }, property: :user
 end
