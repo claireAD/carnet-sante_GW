@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214182119) do
+ActiveRecord::Schema.define(version: 20180215165652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,31 @@ ActiveRecord::Schema.define(version: 20180214182119) do
     t.index ["user_id"], name: "index_allergies_on_user_id"
   end
 
+  create_table "blindnesses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "color_blindnesses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ophtalmics", force: :cascade do |t|
+    t.boolean "glasses"
+    t.boolean "lenses"
+    t.float "leftCorrection"
+    t.float "rightCorrection"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "blindness_id"
+    t.bigint "color_blindness_id"
+    t.bigint "user_id"
+    t.index ["blindness_id"], name: "index_ophtalmics_on_blindness_id"
+    t.index ["color_blindness_id"], name: "index_ophtalmics_on_color_blindness_id"
+    t.index ["user_id"], name: "index_ophtalmics_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -35,4 +60,7 @@ ActiveRecord::Schema.define(version: 20180214182119) do
   end
 
   add_foreign_key "allergies", "users"
+  add_foreign_key "ophtalmics", "blindnesses"
+  add_foreign_key "ophtalmics", "color_blindnesses"
+  add_foreign_key "ophtalmics", "users"
 end

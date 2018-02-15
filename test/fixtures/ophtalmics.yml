@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  glasses: false
+  lenses: false
+  leftCorrection: 1.5
+  rightCorrection: 1.5
+  blindness: one
+  colorBlindness: one
+
+two:
+  glasses: false
+  lenses: false
+  leftCorrection: 1.5
+  rightCorrection: 1.5
+  blindness: two
+  colorBlindness: two
